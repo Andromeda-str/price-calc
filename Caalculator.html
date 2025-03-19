@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Космічний калькулятор вигідності</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <style>
+        body {
+            background: #0a0a23;
+            color: #ffffff;
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            padding: 50px;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 150, 255, 0.7);
+            max-width: 400px;
+            margin: auto;
+        }
+        input {
+            width: 80%;
+            padding: 10px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 5px;
+            text-align: center;
+        }
+        button {
+            background: #0096ff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin-top: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
+            box-shadow: 0 0 10px #0096ff;
+        }
+        button:hover {
+            background: #007acc;
+            box-shadow: 0 0 15px #007acc;
+        }
+        #result {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Калькулятор вигідності</h2>
+        <p>Введіть ціну та масу двох товарів:</p>
+        <input type="number" id="price1" placeholder="Ціна товару 1 (грн)">
+        <input type="number" id="weight1" placeholder="Маса товару 1 (г)">
+        <input type="number" id="price2" placeholder="Ціна товару 2 (грн)">
+        <input type="number" id="weight2" placeholder="Маса товару 2 (г)">
+        <button onclick="calculateBestDeal()">Порахувати</button>
+        <p id="result"></p>
+    </div>
+    <script>
+        function calculateBestDeal() {
+            let price1 = parseFloat(document.getElementById('price1').value);
+            let weight1 = parseFloat(document.getElementById('weight1').value);
+            let price2 = parseFloat(document.getElementById('price2').value);
+            let weight2 = parseFloat(document.getElementById('weight2').value);
+            
+            if (!price1 || !weight1 || !price2 || !weight2) {
+                document.getElementById('result').textContent = "Будь ласка, заповніть всі поля!";
+                return;
+            }
+            
+            let cost1 = price1 / weight1;
+            let cost2 = price2 / weight2;
+            
+            let resultText = cost1 < cost2 ? "Товар 1 вигідніший!" : cost1 > cost2 ? "Товар 2 вигідніший!" : "Обидва товари однаково вигідні!";
+            
+            document.getElementById('result').textContent = resultText;
+            
+            if (window.Telegram && Telegram.WebApp) {
+                Telegram.WebApp.sendData(resultText);
+            }
+        }
+
+        window.onload = function() {
+            if (window.Telegram && Telegram.WebApp) {
+                Telegram.WebApp.expand();
+            }
+        };
+    </script>
+</body>
+</html>
