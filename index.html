@@ -1,96 +1,111 @@
 <!DOCTYPE html>
-<html lang="uk">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Космічний калькулятор вигідності</title>
-    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <title>Minecraft Versions</title>
     <style>
         body {
-            background: #0a0a23;
-            color: #ffffff;
-            font-family: 'Arial', sans-serif;
+            font-family: Arial, sans-serif;
+            background-color: #1a1a1a;
+            color: #fff;
             text-align: center;
-            padding: 50px;
-        }
-        .container {
-            background: rgba(255, 255, 255, 0.1);
             padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 15px rgba(0, 150, 255, 0.7);
-            max-width: 400px;
-            margin: auto;
+        }
+        h1 {
+            color: #ffcc00;
         }
         input {
             width: 80%;
             padding: 10px;
-            margin: 10px 0;
-            border: none;
-            border-radius: 5px;
-            text-align: center;
-        }
-        button {
-            background: #0096ff;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            margin-top: 10px;
-            cursor: pointer;
-            border-radius: 5px;
-            font-size: 16px;
-            box-shadow: 0 0 10px #0096ff;
-        }
-        button:hover {
-            background: #007acc;
-            box-shadow: 0 0 15px #007acc;
-        }
-        #result {
-            margin-top: 20px;
+            margin-bottom: 20px;
             font-size: 18px;
+        }
+        .version-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .version-card {
+            background: #333;
+            padding: 15px;
+            margin: 10px;
+            border-radius: 8px;
+            width: 300px;
+            box-shadow: 0 0 10px #ffcc00;
+        }
+        .version-title {
+            font-size: 20px;
             font-weight: bold;
+            color: #ffcc00;
+        }
+        .version-description {
+            font-size: 16px;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h2>Калькулятор вигідності</h2>
-        <p>Введіть ціну та кількість двох товарів:</p>
-        <input type="number" id="price1" placeholder="Ціна 1 (грн)">
-        <input type="number" id="weight1" placeholder="Кількість 1">
-        <input type="number" id="price2" placeholder="Ціна 2 (грн)">
-        <input type="number" id="weight2" placeholder="Кількість 2">
-        <button onclick="calculateBestDeal()">Порахувати</button>
-        <p id="result"></p>
+
+    <h1>📜 Minecraft Versions</h1>
+    <input type="text" id="search" placeholder="🔍 Пошук версії..." onkeyup="searchVersion()">
+
+    <div class="version-container" id="versions">
+        <!-- Версії будуть додані через JavaScript -->
     </div>
+
     <script>
-        function calculateBestDeal() {
-            let price1 = parseFloat(document.getElementById('price1').value);
-            let weight1 = parseFloat(document.getElementById('weight1').value);
-            let price2 = parseFloat(document.getElementById('price2').value);
-            let weight2 = parseFloat(document.getElementById('weight2').value);
-            
-            if (!price1 || !weight1 || !price2 || !weight2) {
-                document.getElementById('result').textContent = "Будь ласка, заповніть всі поля!";
-                return;
-            }
-            
-            let cost1 = price1 / weight1;
-            let cost2 = price2 / weight2;
-            
-            let resultText = cost1 < cost2 ? "Товар 1 вигідніший!" : cost1 > cost2 ? "Товар 2 вигідніший!" : "Обидва товари однаково вигідні!";
-            
-            document.getElementById('result').textContent = resultText;
-            
-            if (window.Telegram && Telegram.WebApp) {
-                Telegram.WebApp.sendData(resultText);
-            }
+        const versions = [
+            { version: "1.0", description: "Офіційний реліз. Додано Край, зачарування та зілля." },
+            { version: "1.1", description: "Додано яйця спавну, нові біоми та пляжі." },
+            { version: "1.2", description: "З'явилися джунглі, оцелоти та залізні големи." },
+            { version: "1.3", description: "Додано торгівлю з жителями, смарагди та ендер-скрині." },
+            { version: "1.4", description: "Оновлення Pretty Scary: відьми, визер та нові музичні диски." },
+            { version: "1.5", description: "Оновлення Redstone: покращена механіка редстоуна." },
+            { version: "1.6", description: "Оновлення коней: додано коней, мулів та ослів." },
+            { version: "1.7", description: "Оновлення світу: нові біоми та покращене генерування." },
+            { version: "1.8", description: "Оновлення Bountiful: нові блоки та предмети." },
+            { version: "1.9", description: "Оновлення бою: нова бойова система та міста Краю." },
+            { version: "1.10", description: "Оновлення Frostburn: додано полярних ведмедів та магмові блоки." },
+            { version: "1.11", description: "Оновлення досліджень: особняки, шалкер-бокси та елітри." },
+            { version: "1.12", description: "Оновлення кольорів: нові блоки та покращення команд." },
+            { version: "1.13", description: "Оновлення океану: корали, черепахи та тризуби." },
+            { version: "1.14", description: "Оновлення села: нові жителі, рейди та бамбук." },
+            { version: "1.15", description: "Оновлення бджіл: додано бджіл та медові блоки." },
+            { version: "1.16", description: "Оновлення Незеру: нові біоми, блоки та моби." },
+            { version: "1.17", description: "Оновлення печер: нові руди, сталактити та аметісти." },
+            { version: "1.18", description: "Оновлення гір: нові ландшафти та покращене генерування." },
+            { version: "1.19", description: "Оновлення дикої природи: нові моби та глибокі темні біоми." },
+            { version: "1.20", description: "Оновлення Trails & Tales: нові блоки та археологія." }
+        ];
+
+        function displayVersions() {
+            const container = document.getElementById("versions");
+            container.innerHTML = "";
+            versions.forEach(v => {
+                const card = document.createElement("div");
+                card.className = "version-card";
+                card.innerHTML = `<div class="version-title">${v.version}</div>
+                                  <div class="version-description">${v.description}</div>`;
+                container.appendChild(card);
+            });
         }
 
-        window.onload = function() {
-            if (window.Telegram && Telegram.WebApp) {
-                Telegram.WebApp.expand();
-            }
-        };
+        function searchVersion() {
+            const query = document.getElementById("search").value.toLowerCase();
+            const filteredVersions = versions.filter(v => v.version.includes(query));
+            const container = document.getElementById("versions");
+            container.innerHTML = "";
+            filteredVersions.forEach(v => {
+                const card = document.createElement("div");
+                card.className = "version-card";
+                card.innerHTML = `<div class="version-title">${v.version}</div>
+                                  <div class="version-description">${v.description}</div>`;
+                container.appendChild(card);
+            });
+        }
+
+        displayVersions();
     </script>
+
 </body>
 </html>
