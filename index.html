@@ -1,82 +1,123 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="uk">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Пап'є-маше квіти</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f3f3f3;
-            color: #333;
-            text-align: center;
-            padding: 20px;
-        }
-        h1 {
-            color: #d65a31;
-        }
-        .container {
-            max-width: 800px;
-            margin: auto;
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-        }
-        .step {
-            margin-bottom: 20px;
-        }
-        img {
-            width: 100%;
-            border-radius: 8px;
-            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-        }
-        .video {
-            margin-top: 20px;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <title>Обідній Кубик</title>
+  <style>
+    body {
+      background: #fff8f0;
+      text-align: center;
+      font-family: sans-serif;
+      padding: 40px;
+    }
+
+    .scene {
+      width: 120px;
+      height: 120px;
+      margin: 0 auto 20px;
+      perspective: 600px;
+    }
+
+    .cube {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      transform-style: preserve-3d;
+      transition: transform 1s ease;
+    }
+
+    .cube-face {
+      position: absolute;
+      width: 120px;
+      height: 120px;
+      background-size: cover;
+      background-position: center;
+      border: 2px solid #ff9800;
+      font-size: 40px;
+    }
+
+    .face1 { background-image: url('https://png.klev.club/uploads/posts/2024-04/png-klev-club-uyy8-p-storoni-kubika-png-10.png'); transform: rotateY(0deg) translateZ(60px); }
+    .face2 { background-image: url('https://png.klev.club/uploads/posts/2024-06/png-klev-club-3tls-p-storoni-igralnogo-kubika-png-13.png'); transform: rotateY(180deg) translateZ(60px); }
+    .face3 { background-image: url('https://png.klev.club/uploads/posts/2024-04/png-klev-club-uxjf-p-storoni-kubika-png-6.png'); transform: rotateY(90deg) translateZ(60px); }
+    .face4 { background-image: url('https://png.klev.club/uploads/posts/2024-04/png-klev-club-uwkw-p-storoni-kubika-png-4.png'); transform: rotateY(-90deg) translateZ(60px); }
+    .face5 { background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ5pY5lKAP-DW6CbhnXCfAEJzITjHXcqtUKKzlwkuTkRSoTvdudvrbsljuhKP2Wbt48xyw&usqp=CAU'); transform: rotateX(90deg) translateZ(60px); }
+    .face6 { background-image: url('https://png.klev.club/uploads/posts/2024-04/png-klev-club-uy33-p-storoni-kubika-png-7.png'); transform: rotateX(-90deg) translateZ(60px); }
+
+    button {
+      padding: 12px 25px;
+      font-size: 18px;
+      background-color: #f57c00;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .result {
+      margin-top: 30px;
+      background: #fff3e0;
+      padding: 20px;
+      border-radius: 10px;
+      max-width: 480px;
+      margin-left: auto;
+      margin-right: auto;
+      text-align: left;
+    }
+
+    .dish-name {
+      font-weight: bold;
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+  </style>
 </head>
 <body>
 
-    <h1>🌸 Пап'є-маше квіти: Покрокова інструкція</h1>
+  <h1>🎲 Обідній Кубик: кинь і дізнайся, що їсти</h1>
 
-    <div class="container">
-        <div class="step">
-            <h2>1. Матеріали</h2>
-            <p>Вам знадобляться:</p>
-            <ul>
-                <li>Газетний або офісний папір</li>
-                <li>Клей ПВА або борошняний клейстер</li>
-                <li>Фарби (акрил або гуаш)</li>
-                <li>Дріт або дерев'яні палички</li>
-                <li>Пензлики та ножиці</li>
-            </ul>
-        </div>
-
-        <div class="step">
-            <h2>2. Створення форми квітки</h2>
-            <p>Виріжте пелюстки з паперу та змочіть у клейстері. Накладіть шари паперу для міцності.</p>
-            <img src="https://example.com/image1.jpg" alt="Процес виготовлення квітів">
-        </div>
-
-        <div class="step">
-            <h2>3. Сушіння</h2>
-            <p>Дайте пап'є-маше висохнути протягом 24 годин.</p>
-            <img src="https://example.com/image2.jpg" alt="Сушіння квітів">
-        </div>
-
-        <div class="step">
-            <h2>4. Розфарбовування</h2>
-            <p>Пофарбуйте квітку у потрібний колір та додайте декоративні елементи.</p>
-            <img src="https://example.com/image3.jpg" alt="Фарбування пап'є-маше">
-        </div>
-
-        <div class="step">
-            <h2>🎥 Відеоурок</h2>
-            <p>Дивіться детальну інструкцію:</p>
-            <iframe width="100%" height="315" src="https://www.youtube.com/embed/Ot9AJA5yuis" frameborder="0" allowfullscreen></iframe>
-        </div>
+  <div class="scene">
+    <div class="cube" id="cube">
+      <div class="cube-face face1"></div>
+      <div class="cube-face face2"></div>
+      <div class="cube-face face3"></div>
+      <div class="cube-face face4"></div>
+      <div class="cube-face face5"></div>
+      <div class="cube-face face6"></div>
     </div>
+  </div>
 
+  <button onclick="roll()">Кинути кубик</button>
+
+  <div id="result" class="result"></div>
+
+  <script>
+    const cube = document.getElementById('cube');
+    const result = document.getElementById('result');
+
+    const recipes = [
+      { name: "Борщ", recipe: "Буряк, капуста, картопля, бульйон, томатна паста." },
+      { name: "Курка з рисом", recipe: "Курка з спеціями, гарнір із рису." },
+      { name: "Паста з соусом", recipe: "Макарони з томатно-базиліковим соусом." },
+      { name: "Деруни", recipe: "Смажена картопляна маса зі сметаною." },
+      { name: "Плов", recipe: "Свинина, рис, морква, цибуля, спеції." },
+      { name: "Салат Цезар", recipe: "Салат, курка, пармезан, соус, сухарики." }
+    ];
+
+    function roll() {
+      const x = Math.floor(Math.random() * 4 + 1) * 90;
+      const y = Math.floor(Math.random() * 4 + 1) * 90;
+      const z = Math.floor(Math.random() * 4) * 90;
+
+      cube.style.transform = `rotateX(${x}deg) rotateY(${y}deg) rotateZ(${z}deg)`;
+
+      const face = Math.floor(Math.random() * 6); // 0-5
+      setTimeout(() => {
+        result.innerHTML = `
+          <div class="dish-name">${recipes[face].name}</div>
+          <div>${recipes[face].recipe}</div>
+        `;
+      }, 1000);
+    }
+  </script>
 </body>
 </html>
